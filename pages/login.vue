@@ -19,6 +19,7 @@
 </template>
 <script>
 export default {
+    middleware: 'redirectIfAuthenticated',
     data() {
         return {
             loading: false,
