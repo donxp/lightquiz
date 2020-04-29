@@ -13,7 +13,7 @@
             <b-field label="Confirm Password">
                 <b-input type="password" v-model="confirm_password" :disabled="loading" :loading="loading"></b-input>
             </b-field>
-            <b-button type="is-primary" @click="signup" expanded :disabled="loading" :loading="loading">Sign Up</b-button>
+            <b-button type="is-primary" @click="signup" expanded :disabled="loading || (!email || !password || !confirm_password)" :loading="loading">Sign Up</b-button>
         </div>
     </div>
 </template>
