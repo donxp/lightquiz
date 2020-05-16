@@ -5,7 +5,7 @@
             <div class="is-block" style="margin-top: 20px">
                 <b-input placeholder="Name your quiz" />
 
-                <CreateQuestion v-for="(question, index) in questions" :key="index" />
+                <CreateQuestions ref="questions" />
                 
                 <b-button type="is-primary" @click="addQuestion" style="margin-top: 15px" expanded outlined>Add Question</b-button>
                 <b-button type="is-success" @click="submit" style="margin-top: 15px" expanded>Create</b-button>
@@ -14,18 +14,13 @@
     </div>
 </template>
 <script>
-import CreateQuestion from '../components/CreateQuestion'
+import CreateQuestions from '../components/CreateQuestions'
 
 export default {
-    components: { CreateQuestion },
-    data() {
-        return {
-            questions: []
-        }
-    },
+    components: { CreateQuestions },
     methods: {
         addQuestion() {
-            console.log('add question')
+            this.$refs.questions.addQuestion()
         },
         submit() {
 
