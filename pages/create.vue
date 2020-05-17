@@ -23,7 +23,7 @@ export default {
             this.$refs.questions.addQuestion()
         },
         submit() {
-
+            this.$refs.questions.validate()
         }
     }
 }
