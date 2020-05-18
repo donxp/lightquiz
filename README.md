@@ -1,24 +1,13 @@
 # LightQuiz
 
-LightQuiz is a simple application that allows users to create and participate in custom quizes!
+LightQuiz is an application that allows users to create and participate in custom-made quizes.
 
-# Goals
+## Technologies used
+- Nuxt.js (SPA)
+- Vue.js
+- Vuex
+- Buefy (Bulma CSS)
 
-The main goal of this mini-project is to learn new web technologies.
-
-## Build Setup
-
-```bash
-# install dependencies
-$ npm install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
-```
+## Features
+- JWT Authentication
+- Viewing quiz results
