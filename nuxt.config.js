@@ -1,9 +1,6 @@
 
 export default {
   mode: 'spa',
-  /*
-  ** Headers of the page
-  */
   head: {
     title: process.env.npm_package_name || '',
     meta: [
@@ -15,19 +12,10 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  /*
-  ** Customize the progress-bar color
-  */
   loading: { color: '#fff' },
-  /*
-  ** Global CSS
-  */
   css: [
     './assets/variables.scss'
   ],
-  /*
-  ** Plugins to load before mounting the App
-  */
   plugins: [
     './plugins/vuelidate.js'
   ],
@@ -46,5 +34,8 @@ export default {
   build: {
     extend (config, ctx) {
     }
+  },
+  router: {
+    middleware: ['auth']
   }
 }
