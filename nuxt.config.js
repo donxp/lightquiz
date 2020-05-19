@@ -29,39 +29,21 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    './plugins/vuelidate.js'
   ],
-  /*
-  ** Nuxt.js dev-modules
-  */
-  buildModules: [
-  ],
-  /*
-  ** Nuxt.js modules
-  */
+  buildModules: [],
   modules: [
-    // Doc: https://buefy.github.io/#/documentation
     'nuxt-buefy',
-    // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
   ],
   styleResources: {
     sass: './assets/variables.scss'
   },
-  /*
-  ** Axios module configuration
-  ** See https://axios.nuxtjs.org/options
-  */
   axios: {
     baseURL: 'http://localhost:3333/'
   },
-  /*
-  ** Build configuration
-  */
   build: {
-    /*
-    ** You can extend webpack config here
-    */
     extend (config, ctx) {
     }
   }
