@@ -53,6 +53,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    baseURL: 'http://localhost:3333/'
   },
   /*
   ** Build configuration

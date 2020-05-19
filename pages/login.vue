@@ -4,6 +4,9 @@
             <h1 class="is-size-3 has-text-primary has-text-centered">
                 Log In
             </h1>
+            <b-message v-if="error" type="is-danger">
+                Unable to login.
+            </b-message>
             <b-field label="Email">
                 <b-input type="text" v-model="email" :disabled="loading" :loading="loading"></b-input>
             </b-field>
@@ -24,13 +27,26 @@ export default {
         return {
             loading: false,
             email: '',
-            password: ''
+            password: '',
+            error: false
         }
     },
     methods: {
         login() {
             this.loading = true
-            // TODO: Call API
+            
+            this.$axios.post('auth/login', {
+                email: this.email,
+                password: this.password
+            }).then(res => {
+                this.loading = false
+
+                if(res.data && res.data.success) {
+                    this.$store.commit('auth/setLoggedIn', res.data.token)
+                } else {
+                    this.error = true
+                }
+            })
         }
     }
 }

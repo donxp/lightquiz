@@ -4,20 +4,20 @@
             <div class="box">
                 <div class="delete remove-question-button" @click="deleteQuestion(idx)"></div>
                 <b-input v-model="question.name" type="text" placeholder="What is your question?" />
-                <b-select placeholder="Answer type" class="mt-2" expanded>
-                    <option value="single">Single answer</option>
-                    <option value="multi">Multiple answers</option>
-                </b-select>
+
+                <div class="field mt-2">
+                    <b-checkbox v-model="question.allowMultipleAnswers" type="is-info">Allow multiple answers</b-checkbox>
+                </div>
 
                 <div v-for="(answer, idx) in question.answers" :key="idx" class="create-question-answer">
                     <b-input v-model="question.answers[idx]" size="is-small" placeholder="Answer" />
                 </div>
 
-                <b-button type="is-info" size="is-small" class="mt-2" @click="addAnswer(idx)">
+                <b-button type="is-info" size="is-small" class="mt-1" @click="addAnswer(idx)">
                     <b-icon icon="plus" size="is-small"></b-icon>
                     <span>Add Answer</span>
                 </b-button>
-                <b-button type="is-danger" size="is-small" class="mt-2" @click="deleteAnswer(idx)" :disabled="question.answers.length < 1">
+                <b-button type="is-danger" size="is-small" class="mt-1" @click="deleteAnswer(idx)" :disabled="question.answers.length < 1">
                     <b-icon icon="close" size="is-small"></b-icon>
                     <span>Remove Answer</span>
                 </b-button>
@@ -40,7 +40,8 @@ export default {
         addQuestion() {
             this.questions.push({
                 name: '',
-                answers: []
+                answers: [],
+                allowMultipleAnswers: false
             })
         },
         deleteQuestion(idx) {
