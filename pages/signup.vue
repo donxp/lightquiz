@@ -4,6 +4,12 @@
             <h1 class="is-size-3 has-text-primary has-text-centered">
                 Sign Up
             </h1>
+            <b-message v-if="success" type="is-success">
+                Registered successfully
+            </b-message>
+            <b-message v-if="error" type="is-danger">
+                Unable to register: email is already taken.
+            </b-message>
             <b-field
                 label="Email"
                 :type="$v.email.$error ? 'is-danger' : ''"
@@ -44,18 +50,26 @@ export default {
             loading: false,
             email: '',
             password: '',
-            confirm_password: ''
+            confirm_password: '',
+            error: false,
+            success: false
         }
     },
     methods: {
         signup() {
-            this.$v.
-            
             this.loading = true
             
             this.$axios.post('auth/register', {
                 email: this.email,
                 password: this.password
+            }).then(res => {
+                this.loading = false
+
+                if(res.data && res.data.success) {
+                    this.success = true
+                } else {
+                    this.error = true
+                }
             })
         }
     },
