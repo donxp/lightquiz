@@ -15,10 +15,16 @@
         </template>
         <template slot="end">
             <b-navbar-item v-if="!loggedIn" tag="nuxt-link" to="/login">
-                <b-button type="is-info">Log In</b-button>
+                Log In
             </b-navbar-item>
             <b-navbar-item v-if="!loggedIn" tag="nuxt-link" to="/signup">
-                <b-button type="is-info">Sign Up</b-button>
+                Sign Up
+            </b-navbar-item>
+            <b-navbar-item v-if="loggedIn" tag="nuxt-link" to="/quizzes">
+                My Quizzes
+            </b-navbar-item>
+            <b-navbar-item v-if="loggedIn" tag="nuxt-link" to="/logout">
+                Logout
             </b-navbar-item>
         </template>
     </b-navbar>
@@ -28,8 +34,13 @@ import { mapState } from 'vuex'
 export default {
     computed: {
         ...mapState('auth', {
-            loggedIn: 'loggedIn'
+            loggedIn: state => state.loggedIn
         })
+    },
+    methods: {
+        logout() {
+            this.$store.commit('auth/setLoggedOut')
+        }
     }
 }
 </script>

@@ -3,21 +3,21 @@
         <div style="margin-top:10px" v-for="(question, idx) in questions" :key="idx">
             <div class="box">
                 <div class="delete remove-question-button" @click="deleteQuestion(idx)"></div>
-                <b-input v-model="question.name" type="text" placeholder="What is your question?" />
+                <b-input v-model="question.name" :loading="loading" :disabled="loading" type="text" placeholder="What is your question?" />
 
                 <div class="field mt-2">
-                    <b-checkbox v-model="question.allowMultipleAnswers" type="is-info">Allow multiple answers</b-checkbox>
+                    <b-checkbox v-model="question.allow_multiple" :loading="loading" :disabled="loading" type="is-info">Allow multiple answers</b-checkbox>
                 </div>
 
-                <div v-for="(answer, idx) in question.answers" :key="idx" class="create-question-answer">
-                    <b-input v-model="question.answers[idx]" size="is-small" placeholder="Answer" />
+                <div v-for="(answer, idx) in question.answers" :loading="loading" :disabled="loading" :key="idx" class="create-question-answer">
+                    <b-input v-model="question.answers[idx]" :loading="loading" :disabled="loading" size="is-small" placeholder="Answer" />
                 </div>
 
-                <b-button type="is-info" size="is-small" class="mt-1" @click="addAnswer(idx)">
+                <b-button type="is-info" size="is-small" class="mt-1" @click="addAnswer(idx)" :loading="loading" :disabled="loading">
                     <b-icon icon="plus" size="is-small"></b-icon>
                     <span>Add Answer</span>
                 </b-button>
-                <b-button type="is-danger" size="is-small" class="mt-1" @click="deleteAnswer(idx)" :disabled="question.answers.length < 1">
+                <b-button type="is-danger" size="is-small" class="mt-1" @click="deleteAnswer(idx)" :loading="loading" :disabled="question.answers.length < 1 || loading">
                     <b-icon icon="close" size="is-small"></b-icon>
                     <span>Remove Answer</span>
                 </b-button>
@@ -27,7 +27,7 @@
 </template>
 <script>
 export default {
-    props: ['count'],
+    props: ['loading'],
     data() {
         return {
             questions: []
@@ -41,7 +41,7 @@ export default {
             this.questions.push({
                 name: '',
                 answers: [],
-                allowMultipleAnswers: false
+                allow_multiple: false
             })
         },
         deleteQuestion(idx) {

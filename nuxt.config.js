@@ -12,6 +12,9 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  env: {
+    url: 'http://localhost:3000/'
+  },
   loading: { color: '#fff' },
   css: [
     './assets/variables.scss'
