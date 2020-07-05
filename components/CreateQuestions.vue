@@ -10,7 +10,14 @@
                 </div>
 
                 <div v-for="(answer, idx) in question.answers" :loading="loading" :disabled="loading" :key="idx" class="create-question-answer">
-                    <b-input v-model="question.answers[idx]" :loading="loading" :disabled="loading" size="is-small" placeholder="Answer" />
+                    <div class="columns">
+                        <div class="column is-10">
+                            <b-input v-model="question.answers[idx].answer" :loading="loading" :disabled="loading" size="is-small" placeholder="Answer" />
+                        </div>
+                        <div class="column is-2 is-flex create-question-answer-checkbox">
+                            <b-checkbox v-model="question.answers[idx].correct" size="is-small">Correct</b-checkbox>
+                        </div>
+                    </div>
                 </div>
 
                 <b-button type="is-info" size="is-small" class="mt-1" @click="addAnswer(idx)" :loading="loading" :disabled="loading">
@@ -49,7 +56,10 @@ export default {
         },
         addAnswer(idx) {
             if(this.questions[idx] === undefined) return
-            this.questions[idx].answers.push('')
+            this.questions[idx].answers.push({
+                answer: '',
+                correct: false
+            })
         },
         deleteAnswer(idx) {
             if(this.questions[idx] === undefined) return
@@ -92,7 +102,11 @@ export default {
     margin-bottom: -10px;
 }
 
-.create-question-answer {
+.create-question-answer:first-of-type {
     margin-top: 15px;
+}
+
+.create-question-answer-checkbox {
+    align-content: center;
 }
 </style>
